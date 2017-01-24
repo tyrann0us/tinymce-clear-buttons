@@ -1,50 +1,52 @@
 <?php
-/*
-Plugin Name: TinyMCE Clear
-Plugin URI: http://www.peix.org/code/tinymce-clear-buttons
-Description: Enables TinyMCE clear buttons
-Version: 1.1
-Author: Miguel Ibero
-Author URI: http://www.peix.org
 
-Released under the GPL v.2, http://www.gnu.org/copyleft/gpl.html
+/**
+ * The plugin bootstrap file
+ *
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * admin area. This file also includes all of the dependencies used by the plugin
+ * and defines a function that starts the plugin.
+ *
+ * @link              https://profiles.wordpress.org/tyrannous/
+ * @since             1.0.0
+ * @package           Tinymce_Clear_Button
+ *
+ * @wordpress-plugin
+ * Plugin Name:       TinyMCE Clear Float
+ * Plugin URI:        https://wordpress.org/plugins/tinymce-clear-buttons/
+ * Description:       Adds a button to the WordPress TinyMCE editor to clear floats.
+ * Version:           1.2.0
+ * Author:            Philipp Bammes
+ * Author URI:        https://profiles.wordpress.org/tyrannous/
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       tinymce-clear-float
+ * Domain Path:       /languages
+ */
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-*/
-
-function tinymce_clear_addbuttons() {
-   // Don't bother doing this stuff if the current user lacks permissions
-   if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
-     return;
- 
-   // Add only in Rich Editor mode
-   if ( get_user_option('rich_editing') == 'true') {
-     add_filter("mce_external_plugins", "add_tinymce_clear_plugin");
-     add_filter('mce_buttons', 'register_tinymce_clear_buttons');
-   }
-}
- 
-function register_tinymce_clear_buttons($buttons) {
-   array_push($buttons, "separator", "clearleft","clearright","clearboth");
-   return $buttons;
-}
- 
-// Load the TinyMCE plugin : editor_plugin.js (wp2.5)
-function add_tinymce_clear_plugin($plugin_array) {
-  $plugin_name = preg_replace('/\.php/','',basename(__FILE__));
-  $plugin_array['clear'] = WP_PLUGIN_URL .'/'.$plugin_name.'/mce/clear/editor_plugin.js';
-   return $plugin_array;
-}
- 
-add_action('init', 'tinymce_clear_addbuttons');
-
-function tinymce_clear_buttons_before_init( $init ) {
-    // do not remove empty divs
-    $init['extended_valid_elements'] .= ',div[clear|style|class]';
-    return $init;
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
 
-add_filter('tiny_mce_before_init', 'tinymce_clear_buttons_before_init');
+/**
+ * The core plugin class that is used to define  admin-specific hooks.
+ */
+require plugin_dir_path( __FILE__ ) . 'includes/class-tinymce-clear-float.php';
+
+/**
+ * Begins execution of the plugin.
+ *
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ *
+ * @since    1.2.0
+ */
+function run_tinymce_clear_float() {
+
+	$plugin = new Tinymce_Clear_Float();
+	$plugin->run();
+
+}
+run_tinymce_clear_float();

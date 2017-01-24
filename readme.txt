@@ -1,43 +1,52 @@
-=== TinyMCE Clear ===
-Contributors: Miguel Ibero
+=== TinyMCE Clear Float ===
+Contributors: Tyrannous
 Donate link: 
-Tags: wysiwyg, formatting, tinymce, write, edit, post
-Requires at least: 2.9
-Tested up to: 2.9
-Stable tag: 1.1
+Tags: clear, clear floats, formatting, tinymce, wordpress editor, wysiwyg
+Requires at least: 4.0
+Tested up to: 4.7.1
+Stable tag: 1.2.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adds clear buttons to TinyMCE Editor
+Adds a button to the WordPress TinyMCE editor to clear floats.
 
 == Description ==
 
-This plugin adds 3 buttons to [TinyMCE](http://tinymce.moxiecode.com/) to clear floating elements. It also adds divs to valid tags so they won't be deleted if empty.
-
-**Language Support:** The plugin interface is in English and Spanish.
-
+Adds a button to the WordPress TinyMCE editor to clear floats.
 
 == Installation ==
 
-1. Download.
-2. Unzip.
-3. Upload to the plugins directory (wp-content/plugins).
-4. Activate the plugin.
-
-== Changelog ==
-
-= 1.1 =
-Added html block in the style of wordpress more...
-
-= 1.0 =
-Working buttons. Maybe a html displayed image should be added in the html editor.
+1. Install the plugin through the WordPress “Plugins” screen
+2. Activate the plugin
 
 == Frequently Asked Questions ==
 
-= Why do you need to clear the floats? =
+= Which HTML markup does the plugin use ? =
 
-Sometimes you want to add two floating images but don't want them to overlap. You can add a clear in
-the middle to achieve the effect.
+Until version 1.1, the following markup has been used: `<div style="clear: (left|right|both);"></div>`.
+From version 1.2 on, the following markup is used: `<br style="clear: both;" />` (line breaks).
+> Note: TinyMCE wrapps line breaks in paragraphs which may lead to additional margins depending on your theme. To prevent these margins paste the following in the “Custom CSS” part of the Customizer:
+`p > br[style="clear: both;"]:only-child {
+	content: '';
+	display: block;
+	margin-bottom: -1.5em;
+}`
+The value `1.5em` corresponds to your theme’s `margin-bottom` of `<p>` tags.
 
 == Screenshots ==
 
-1. The added clear buttons
-2. The html block
+
+
+== Changelog ==
+
+= 1.2.0 =
+
+* New maintainer; first update after seven years
+* Feature: Removed clear left and clear right buttons (see [FAQ section](https://wordpress.org/plugins/tinymce-clear-buttons/faq/))
+* Misc: Completely refactured plugin code
+
+= 1.1 (05/10/2010) =
+* Feature: Added HTML block in the style of WordPress
+
+= 1.0 (04/28/2010)=
+* Initial release

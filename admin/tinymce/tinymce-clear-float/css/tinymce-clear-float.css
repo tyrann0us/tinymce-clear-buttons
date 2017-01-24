@@ -1,0 +1,11 @@
+.mce-content-body img.mce-tinymce-clear-float {
+    background: transparent url( '../images/tinymce-clear-float-placeholder.png' ) repeat-y scroll center center;
+}
+
+@media print, not all, ( -webkit-min-device-pixel-ratio: 1.25 ), ( min-resolution: 120dpi ) {
+
+	.mce-content-body img.mce-tinymce-clear-float {
+		background-image: url( '../images/tinymce-clear-float-placeholder-2x.png' );
+		background-size: 1900px 20px;
+	}
+}
