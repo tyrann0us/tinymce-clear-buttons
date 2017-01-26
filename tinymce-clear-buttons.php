@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * The core plugin class that is used to define  admin-specific hooks.
+ * The core plugin class that is used to define admin-specific hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-tinymce-clear-float.php';
 

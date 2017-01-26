@@ -106,8 +106,7 @@ class Tinymce_Clear_Float {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
+	 * Register all of the hooks related to the admin area functionality of the plugin.
 	 *
 	 * @since    1.2.0
 	 * @access   private

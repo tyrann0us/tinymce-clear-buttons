@@ -2,10 +2,6 @@
 
 	tinymce.create( 'tinymce.plugins.tinymce_clear_float', {
 		/**
-		 * Initializes the plugin, this will be executed after the plugin has been created.
-		 * This call is done before the editor instance has finished it's initialization so use the onInit event
-		 * of the editor instance to intercept that event.
-		 *
 		 * @param {tinymce.Editor} editor Editor instance that the plugin is initialized in.
 		 * @param {string} url Absolute URL to where the plugin is located.
 		 */
@@ -16,10 +12,10 @@
 				clear_placeholder = '<img ' +
 					'src="' + tinymce.Env.transparentSrc + '" ' +
 					/*
-					* Note: The `data-wp-more` attribute is used to let WordPress apply core CSS at the placeholder.
+					* Note: `data-wp-more` attribute is used to let WordPress apply core CSS at the placeholder.
 					*/
 					'data-wp-more ' +
-					'class="wp-tinymce-clear-float mce-tinymce-clear-float" ' +
+					'class="mce-tinymce-clear-float" ' +
 					'alt="" ' +
 					'title="' + clear_title + '" ' +
 					'data-mce-resize="false" ' +

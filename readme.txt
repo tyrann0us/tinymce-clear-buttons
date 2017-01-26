@@ -1,6 +1,6 @@
 === TinyMCE Clear Float ===
 Contributors: Tyrannous
-Donate link: 
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T5JM3KRTUBEZA
 Tags: clear, clear floats, formatting, tinymce, wordpress editor, wysiwyg
 Requires at least: 4.0
 Tested up to: 4.7.1
@@ -35,11 +35,13 @@ The value `1.5em` corresponds to your theme’s `margin-bottom` of `<p>` tags.
 
 == Screenshots ==
 
-
+1. Before: Floated images in the editor. The second image overlaps the first.
+2. After: Added clear tag (see new icon in second toolbar).
+3. Markup in the Text Editor (notice `<br style="clear: both;" />`).
 
 == Changelog ==
 
-= 1.2.0 =
+= 1.2.0 (01/26/2017) =
 
 * New maintainer; first update after seven years
 * Feature: Removed clear left and clear right buttons (see [FAQ section](https://wordpress.org/plugins/tinymce-clear-buttons/faq/))
