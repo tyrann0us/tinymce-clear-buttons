@@ -13,8 +13,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
+ * Defines the plugin name, version, and all required hooks.
  *
  * @package    Tinymce_Clear_Float
  * @subpackage Tinymce_Clear_Float/admin
@@ -130,7 +129,7 @@ class Tinymce_Clear_Float_Admin {
 	 * Add link to PayPal donation page and wordpress.org rating page.
 	 * 
 	 * @param    array     $data    Current plugin row links.
-	 * @param    string    $page    Plugin basename.
+	 * @param    string    $file    Plugin basename.
 	 * @return   array     $data    Merged array with links.
 	 *
 	 * @since    1.2.0
