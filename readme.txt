@@ -24,7 +24,7 @@ Adds a button to the WordPress TinyMCE editor to clear floats.
 = Which HTML markup does the plugin use ? =
 
 Until version 1.1, the following markup has been used: `<div style="clear: (left|right|both);"></div>`.
-From version 1.2 on, the following markup is used: `<br style="clear: both;" />` (line breaks).
+From version 1.2.0 on, the following markup is used: `<br style="clear: both;" />` (line breaks).
 > Note: TinyMCE wrapps line breaks in paragraphs which may lead to additional margins depending on your theme. To prevent these margins paste the following in the “Custom CSS” part of the Customizer:
 `p > br[style="clear: both;"]:only-child {
 	content: '';
@@ -50,5 +50,5 @@ The value `1.5em` corresponds to your theme’s `margin-bottom` of `<p>` tags.
 = 1.1 (05/10/2010) =
 * Feature: Added HTML block in the style of WordPress
 
-= 1.0 (04/28/2010)=
+= 1.0 (04/28/2010) =
 * Initial release
