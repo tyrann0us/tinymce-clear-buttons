@@ -14,10 +14,11 @@ Adds a button to the WordPress TinyMCE editor to clear floats.
 
 Adds a button to the WordPress TinyMCE editor to clear floats.
 
-== Installation ==
+== Screenshots ==
 
-1. Install the plugin through the WordPress “Plugins” screen
-2. Activate the plugin
+1. Before: Floated images in the editor. The second image overlaps the first.
+2. After: Added clear tag (see new icon in second toolbar).
+3. Markup in the Text Editor (notice `<br style="clear: both;" />`).
 
 == Frequently Asked Questions ==
 
@@ -33,18 +34,14 @@ From version 1.2.0 on, the following markup is used: `<br style="clear: both;" /
 }`
 The value `1.5em` corresponds to your theme’s `margin-bottom` of `<p>` tags.
 
-== Screenshots ==
-
-1. Before: Floated images in the editor. The second image overlaps the first.
-2. After: Added clear tag (see new icon in second toolbar).
-3. Markup in the Text Editor (notice `<br style="clear: both;" />`).
-
 == Changelog ==
+
+
 
 = 1.2.0 (01/26/2017) =
 
 * New maintainer; first update after seven years
-* Feature: Removed clear left and clear right buttons (see [FAQ section](https://wordpress.org/plugins/tinymce-clear-buttons/faq/))
+* Feature: Removed clear left and clear right buttons (see [FAQ section](https://wordpress.org/plugins/tinymce-clear-buttons/#faq))
 * Misc: Completely refactured plugin code
 
 = 1.1 (05/10/2010) =
