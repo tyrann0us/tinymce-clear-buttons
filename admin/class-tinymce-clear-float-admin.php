@@ -144,12 +144,12 @@ class Tinymce_Clear_Float_Admin {
 				sprintf(
 					'<a href="%s" target="blank">%s</a>',
 					'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T5JM3KRTUBEZA',
-					__( 'Donate', 'tinymce-clear-float' )
+					__( 'Donate', 'tinymce-clear-buttons' )
 				),
 				sprintf(
 					'<a href="%s" target="blank">%s</a>',
 					'https://wordpress.org/support/plugin/tinymce-clear-buttons/reviews/#new-post',
-					__( 'Rate', 'tinymce-clear-float' )
+					__( 'Rate', 'tinymce-clear-buttons' )
 				)
 			) );
 		}
