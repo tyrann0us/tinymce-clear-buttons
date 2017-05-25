@@ -15,7 +15,7 @@
  * Plugin Name:       TinyMCE Clear Float
  * Plugin URI:        https://wordpress.org/plugins/tinymce-clear-buttons/
  * Description:       Adds a button to the WordPress TinyMCE editor to clear floats.
- * Version:           1.2.1
+ * Version:           1.2.2
  * Author:            Philipp Bammes
  * Author URI:        https://profiles.wordpress.org/tyrannous/
  * License:           GPL-2.0+
