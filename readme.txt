@@ -2,7 +2,7 @@
 Contributors: Tyrannous
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T5JM3KRTUBEZA
 Tags: clear, clear floats, formatting, tinymce, wordpress editor, wysiwyg
-Requires at least: 4.0
+Requires at least: 4.6
 Tested up to: 4.7.3
 Stable tag: 1.2.1
 License: GPLv2 or later
