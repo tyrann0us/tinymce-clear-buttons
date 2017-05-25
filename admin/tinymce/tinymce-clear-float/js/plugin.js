@@ -7,13 +7,14 @@
 		 */
 		init : function( editor, url ) {
 			var clear_html = '<br style="clear: both;" />',
-				clear_title = editor.getLang( 'tinymce_clear_float.img_title' );
-				clear_shortcut_label = ( tinymce.Env.mac ? '\u2303\u2325' : 'Shift+Alt+' ) + 'F';
+				clear_html_no_semicolon = clear_html.replace( ';', '' ),
+				clear_title = editor.getLang( 'tinymce_clear_float.img_title' ),
+				clear_shortcut_label = ( tinymce.Env.mac ? '\u2303\u2325' : 'Shift+Alt+' ) + 'F',
 				clear_placeholder = '<img ' +
 					'src="' + tinymce.Env.transparentSrc + '" ' +
-					/*
-					* Note: `data-wp-more` attribute is used to let WordPress apply core CSS at the placeholder.
-					*/
+					/**
+					 * Note: `data-wp-more` attribute is used to let WordPress apply core CSS at the placeholder.
+					 */
 					'data-wp-more ' +
 					'class="mce-tinymce-clear-float" ' +
 					'alt="" ' +
@@ -36,9 +37,16 @@
 
 			editor.on( 'BeforeSetContent', function( event ) {
 				if ( event.content ) {
-					var re = new RegExp( clear_html, 'g' );
-					event.content = event.content.replace( re, clear_placeholder );
-					/*
+					var re_clear_html = new RegExp( clear_html, 'g' );
+					var re_clear_html_no_semicolon = new RegExp( clear_html_no_semicolon, 'g' );
+					event.content = event.content.replace( re_clear_html, clear_placeholder );
+					
+					/**
+					 * Under certain circumstances, TinyMCE will strip the semicolon from `<br style="clear: both;">.
+					 * Also replace this.
+					 */
+					event.content = event.content.replace( re_clear_html_no_semicolon, clear_placeholder );
+					/**
 					 * Replace `<div style="clear: (left|right|both);"></div>` with placeholder too.
 					 * This HTML markup has been used until version 1.1.
 					 */
