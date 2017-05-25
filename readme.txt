@@ -3,7 +3,7 @@ Contributors: Tyrannous
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=T5JM3KRTUBEZA
 Tags: clear, clear floats, formatting, tinymce, wordpress editor, wysiwyg
 Requires at least: 4.6
-Tested up to: 4.7.3
+Tested up to: 4.7.5
 Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -40,7 +40,6 @@ The value `1.5em` corresponds to your theme’s `margin-bottom` of `<p>` tags.
 * Fix: Rare bug that caused TinyMCE to remove the `<br />` tag
 * Fix: Bug that prevented the plugin from beeing [translatable](https://translate.wordpress.org/projects/wp-plugins/tinymce-clear-buttons) (finally)
 * Misc: Bumped "Requires at least" to WordPress 4.6
-
 
 = 1.2.1 (03/30/2017) =
 * Fix: Bug that prevented the plugin from beeing [translatable](https://translate.wordpress.org/projects/wp-plugins/tinymce-clear-buttons)
