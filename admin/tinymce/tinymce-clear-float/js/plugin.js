@@ -6,65 +6,83 @@
 		 * @param {string} url Absolute URL to where the plugin is located.
 		 */
 		init : function( editor, url ) {
-			var clear_html = '<br style="clear: both;" />',
-				clear_html_no_semicolon = clear_html.replace( ';', '' ),
-				clear_title = editor.getLang( 'tinymce_clear_float.img_title' ),
-				clear_shortcut_label = ( tinymce.Env.mac ? '\u2303\u2325' : 'Shift+Alt+' ) + 'F',
-				clear_placeholder = '<img ' +
-					'src="' + tinymce.Env.transparentSrc + '" ' +
-					/**
-					 * Note: `data-wp-more` attribute is used to let WordPress apply core CSS at the placeholder.
-					 */
-					'data-wp-more ' +
-					'class="mce-tinymce-clear-float" ' +
-					'alt="" ' +
-					'title="' + clear_title + '" ' +
-					'data-mce-resize="false" ' +
-					'data-mce-placeholder="1" ' +
-				'/>';
+			var parser        = new DOMParser(),
+			    shortcutLabel = ( tinymce.Env.mac ? '\u2303\u2325' : 'Shift+Alt+' ) + 'F';
 
 			editor.addButton( 'tinymce-clear-float', {
-				title: editor.getLang( 'tinymce_clear_float.tooltip' ) + ' (' + clear_shortcut_label + ')',
-				cmd: 'clear_both',
+				title: editor.getLang( 'tinymce_clear_float.tooltip' ) + ' (' + shortcutLabel + ')',
+				cmd:   'clear_both',
 				image: url + '/../images/tinymce-clear-float-icon.svg',
 			} );
 
 			editor.addShortcut( 'access+f', null, 'clear_both' );
 
 			editor.addCommand( 'clear_both', function(){
-                editor.execCommand( 'mceInsertContent', false, clear_placeholder );
+				editor.execCommand( 'mceInsertContent', false, placeholder.outerHTML );
 			} );
 
+			/**
+			 *  Replace all instances of `<br style="clear: both;">` with placeholder image.
+			 */
 			editor.on( 'BeforeSetContent', function( event ) {
-				if ( event.content ) {
-					var re_clear_html = new RegExp( clear_html, 'g' );
-					var re_clear_html_no_semicolon = new RegExp( clear_html_no_semicolon, 'g' );
-					event.content = event.content.replace( re_clear_html, clear_placeholder );
-					
-					/**
-					 * Under certain circumstances, TinyMCE will strip the semicolon from `<br style="clear: both;">.
-					 * Also replace this.
-					 */
-					event.content = event.content.replace( re_clear_html_no_semicolon, clear_placeholder );
-					/**
-					 * Replace `<div style="clear: (left|right|both);"></div>` with placeholder too.
-					 * This HTML markup has been used until version 1.1.
-					 */
-					event.content = event.content.replace( /<div style="clear:(.+?)"><\/div>/g, clear_placeholder );
+				if ( ! event.content ) {
+					return;
 				}
+
+				var html     = parser.parseFromString( event.content, 'text/html' ),
+				    elements = html.getElementsByTagName( 'br' );
+
+				for ( var i = elements.length - 1; i >= 0; i-- ) {
+					if ( 'both' === elements[ i ].style.clear ) {
+						/**
+						 * Create the placeholder image.
+						 */
+						placeholder           = document.createElement( 'img' );
+						placeholder.src       = tinymce.Env.transparentSrc;
+						placeholder.className = 'mce-tinymce-clear-float';
+						placeholder.title     = editor.getLang( 'tinymce_clear_float.img_title' );
+						/**
+						 * `data-wp-more` is required to apply core CSS to the placeholder element.
+						 */
+						placeholder.setAttribute( 'data-wp-more', '' );
+						placeholder.setAttribute( 'data-mce-resize', false );
+						placeholder.setAttribute( 'data-mce-placeholder', 1 );
+
+						elements[ i ].parentNode.replaceChild( placeholder, elements[ i ] );
+					}
+				};
+				event.content = html.body.innerHTML;
+
+				/**
+				 * Also replace `<div style="clear:*"></div>` (deprecated).
+				 * This HTML markup has been used until v1.1.
+				 */
+				event.content = event.content.replace( /<div style="clear:(.+?)"><\/div>/g, placeholder.outerHTML );
 			} );
 
+			/**
+			 *  Replace all instances of the placeholder image with `<br style="clear: both;">`.
+			 */
 			editor.on( 'PostProcess', function( event ) {
-				if ( event.get ) {
-					event.content = event.content.replace( /<img[^>]+>/g, function( image ) {
-						var string;
-
-						if ( image.indexOf( 'mce-tinymce-clear-float' ) !== -1 ) {
-							string = clear_html;
-						}
-						return string || image;
-					} );
+				if ( ! event.content ) {
+					return;
 				}
+
+				var html     = parser.parseFromString( event.content, 'text/html' ),
+				    elements = html.getElementsByTagName( 'img' );
+
+				for ( var i = elements.length - 1; i >= 0; i-- ) {
+					if ( 'mce-tinymce-clear-float' === elements[ i ].className ) {
+						/**
+						 * Create the clear element.
+						 */
+						element             = document.createElement( 'br' );
+						element.style.clear = 'both';
+
+						elements[ i ].parentNode.replaceChild( element, elements[ i ] );
+					}
+				};
+				event.content = html.body.innerHTML;
 			} );
 		},
 
