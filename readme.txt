@@ -18,14 +18,13 @@ Adds a button to the WordPress TinyMCE editor to clear floats.
 
 1. Before: Floated images in the editor. The second image overlaps the first.
 2. After: Added clear tag (see new icon in second toolbar).
-3. Markup in the Text Editor (notice `<br style="clear: both;" />`).
+3. Markup in the Text Editor (notice `<br style="clear: both;">`).
 
 == Frequently Asked Questions ==
 
 = Which HTML markup does the plugin use ? =
 
-Until version 1.1, the following markup has been used: `<div style="clear: (left|right|both);"></div>`.
-From version 1.2.0 on, the following markup is used: `<br style="clear: both;" />` (line breaks).
+Line breaks with inline styles (`<br style="clear: both;">`).
 > Note: TinyMCE wrapps line breaks in paragraphs which may lead to additional margins depending on your theme. To prevent these margins paste the following in the “Custom CSS” part of the Customizer:
 `p > br[style="clear: both;"]:only-child {
 	content: '';
