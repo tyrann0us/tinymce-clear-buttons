@@ -67,7 +67,7 @@ class Tinymce_Clear_Float {
 	public function __construct() {
 
 		$this->plugin_name = 'tinymce-clear-float';
-		$this->version = '1.2.2';
+		$this->version = '1.3.0';
 
 		$this->load_dependencies();
 		$this->define_admin_hooks();
