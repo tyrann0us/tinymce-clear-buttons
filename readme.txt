@@ -35,16 +35,19 @@ The value `1.5em` corresponds to your theme’s `margin-bottom` of `<p>` tags.
 
 == Changelog ==
 
+= 1.3.1 (05/20/2018) =
+* Fix: Bug (introduced in v1.3.0) that hid the TinyMCE content if no clear element was found
+
 = 1.3.0 (05/19/2018) =
 * Fix: Replaced regular expressions for switching clear elements with placeholders and vice versa with DOMParser to reliably match all possible clear element notations (e. g. `<br style="clear: both;">`, `<br style="clear:both">`, `<br style="clear: both;" />`, `<br style="clear:both" />`)
 
 = 1.2.2 (05/25/2017) =
-* Fix: Rare bug that caused TinyMCE to remove the `<br />` tag
-* Fix: Bug that prevented the plugin from beeing [translatable](https://translate.wordpress.org/projects/wp-plugins/tinymce-clear-buttons) (finally)
+* Fix: Rare bug (introduced in v1.2.0) that caused TinyMCE to remove the `<br />` tag
+* Fix: Bug (introduced in v1.2.0) that prevented the plugin from beeing [translatable](https://translate.wordpress.org/projects/wp-plugins/tinymce-clear-buttons) (finally)
 * Misc: Bumped "Requires at least" to WordPress 4.6
 
 = 1.2.1 (03/30/2017) =
-* Fix: Bug that prevented the plugin from beeing [translatable](https://translate.wordpress.org/projects/wp-plugins/tinymce-clear-buttons)
+* Fix: Bug (introduced in v1.2.0) that prevented the plugin from beeing [translatable](https://translate.wordpress.org/projects/wp-plugins/tinymce-clear-buttons)
 
 = 1.2.0 (01/26/2017) =
 * New maintainer; first update after seven years
