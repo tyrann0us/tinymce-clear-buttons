@@ -9,6 +9,26 @@
 			var parser        = new DOMParser(),
 			    shortcutLabel = ( tinymce.Env.mac ? '\u2303\u2325' : 'Shift+Alt+' ) + 'F';
 
+			/**
+			 * Create placeholder image.
+			 */
+			placeholder           = document.createElement( 'img' );
+			placeholder.src       = tinymce.Env.transparentSrc;
+			placeholder.className = 'mce-tinymce-clear-float';
+			placeholder.title     = editor.getLang( 'tinymce_clear_float.img_title' );
+			/**
+			 * `data-wp-more` is required to apply core CSS to the placeholder element.
+			 */
+			placeholder.setAttribute( 'data-wp-more', '' );
+			placeholder.setAttribute( 'data-mce-resize', false );
+			placeholder.setAttribute( 'data-mce-placeholder', 1 );
+
+			/**
+			 * Create clear element.
+			 */
+			element             = document.createElement( 'br' );
+			element.style.clear = 'both';
+
 			editor.addButton( 'tinymce-clear-float', {
 				title: editor.getLang( 'tinymce_clear_float.tooltip' ) + ' (' + shortcutLabel + ')',
 				cmd:   'clear_both',
@@ -34,21 +54,7 @@
 
 				for ( var i = elements.length - 1; i >= 0; i-- ) {
 					if ( 'both' === elements[ i ].style.clear ) {
-						/**
-						 * Create the placeholder image.
-						 */
-						placeholder           = document.createElement( 'img' );
-						placeholder.src       = tinymce.Env.transparentSrc;
-						placeholder.className = 'mce-tinymce-clear-float';
-						placeholder.title     = editor.getLang( 'tinymce_clear_float.img_title' );
-						/**
-						 * `data-wp-more` is required to apply core CSS to the placeholder element.
-						 */
-						placeholder.setAttribute( 'data-wp-more', '' );
-						placeholder.setAttribute( 'data-mce-resize', false );
-						placeholder.setAttribute( 'data-mce-placeholder', 1 );
-
-						elements[ i ].parentNode.replaceChild( placeholder, elements[ i ] );
+						elements[ i ].parentNode.replaceChild( placeholder.cloneNode(), elements[ i ] );
 					}
 				};
 				event.content = html.body.innerHTML;
@@ -73,13 +79,7 @@
 
 				for ( var i = elements.length - 1; i >= 0; i-- ) {
 					if ( 'mce-tinymce-clear-float' === elements[ i ].className ) {
-						/**
-						 * Create the clear element.
-						 */
-						element             = document.createElement( 'br' );
-						element.style.clear = 'both';
-
-						elements[ i ].parentNode.replaceChild( element, elements[ i ] );
+						elements[ i ].parentNode.replaceChild( element.cloneNode(), elements[ i ] );
 					}
 				};
 				event.content = html.body.innerHTML;
