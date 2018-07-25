@@ -37,7 +37,7 @@
 
 			editor.addShortcut( 'access+f', null, 'clear_both' );
 
-			editor.addCommand( 'clear_both', function(){
+			editor.addCommand( 'clear_both', function() {
 				editor.execCommand( 'mceInsertContent', false, placeholder.outerHTML );
 			} );
 
@@ -57,13 +57,19 @@
 						elements[ i ].parentNode.replaceChild( placeholder.cloneNode(), elements[ i ] );
 					}
 				};
-				event.content = html.body.innerHTML;
 
 				/**
 				 * Also replace `<div style="clear:*"></div>` (deprecated).
 				 * This HTML markup has been used until v1.1.
 				 */
-				event.content = event.content.replace( /<div style="clear:(.+?)"><\/div>/g, placeholder.outerHTML );
+				var deprecated = html.getElementsByTagName( 'div' ),
+					nbsp       = '\u00a0';
+				for ( var i = deprecated.length - 1; i >= 0; i-- ) {
+					if ( 'both' === deprecated[ i ].style.clear && ( ! deprecated[ i ].hasChildNodes() || nbsp === deprecated[ i ].textContent ) ) {
+						deprecated[ i ].parentNode.replaceChild( placeholder.cloneNode(), deprecated[ i ] );
+					}
+				};
+				event.content = html.body.innerHTML;
 			} );
 
 			/**
