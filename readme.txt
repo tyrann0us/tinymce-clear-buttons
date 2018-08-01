@@ -35,6 +35,9 @@ The value `1.5em` corresponds to your theme’s `margin-bottom` of `<p>` tags.
 
 == Changelog ==
 
+= 1.3.2 (08/01/2018) =
+* Fix: Rare bug (introduced in v1.2.0) that prevented parsing of deprecated clear element if it contained non breaking space (`<div style="clear: both;">&nbsp;</div>`)
+
 = 1.3.1 (05/20/2018) =
 * Fix: Bug (introduced in v1.3.0) that hid the TinyMCE content if no clear element was found
 
